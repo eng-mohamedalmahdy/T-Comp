@@ -15,6 +15,7 @@ import net.mskurt.neveremptylistviewlibrary.NeverEmptyListView;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class StudentsList extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class StudentsList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students_list);
-
+        ButterKnife.bind(this);
         String school = getIntent().getStringExtra("school");
         String year = getIntent().getStringExtra("year");
         String subject = getIntent().getStringExtra("subject");
@@ -34,13 +35,16 @@ public class StudentsList extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("system").child("schools").child(school).child(year);
         students = new ArrayList<>();
 
-// Read from the database
+        // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    students.add(ds.child("name").getValue().toString());
+                }
 
             }
 

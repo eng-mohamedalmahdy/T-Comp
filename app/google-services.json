@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "49557768679",
+    "firebase_url": "https://tcomp-c1be0.firebaseio.com",
+    "project_id": "tcomp-c1be0",
+    "storage_bucket": "tcomp-c1be0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49557768679:android:a4b0a6895ea3d369",
+        "android_client_info": {
+          "package_name": "com.sourcey.materialloginexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49557768679-lhie2eh5m2m04bosgm02060ru0p1c1ie.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sourcey.materialloginexample",
+            "certificate_hash": "002bbd6c3b416dc3402bbc925b606f6734667492"
+          }
+        },
+        {
+          "client_id": "49557768679-bi7o7cvflk5dqgb6v4hltr5r46mujefb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA25ciWWu2PhDu3LRatU0ZM0Umjve6rLVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49557768679-bi7o7cvflk5dqgb6v4hltr5r46mujefb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
