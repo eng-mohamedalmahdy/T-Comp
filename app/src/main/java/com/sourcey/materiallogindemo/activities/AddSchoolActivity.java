@@ -1,14 +1,15 @@
-package com.sourcey.materiallogindemo;
+package com.sourcey.materiallogindemo.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.sourcey.materiallogindemo.R;
+import com.sourcey.materiallogindemo.adapters.SimpleArrayListAdapter;
 
 
 import java.util.ArrayList;

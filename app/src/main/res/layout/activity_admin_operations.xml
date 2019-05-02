@@ -8,7 +8,7 @@
     android:background="@color/primary"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.sourcey.materiallogindemo.AdminOperations">
+    tools:context="com.sourcey.materiallogindemo.activities.AdminOperations">
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/add_teacher"

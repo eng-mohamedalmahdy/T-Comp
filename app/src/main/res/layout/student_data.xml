@@ -12,20 +12,19 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:textColor="@color/accent" />
-
-    <TextView
-        android:id="@+id/subject_name"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:textColor="@color/accent" />
+        android:text="name"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/subject_grade"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:textColor="@color/accent" />
+        android:text="10"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
+        android:textSize="25sp" />
 
 </LinearLayout>
