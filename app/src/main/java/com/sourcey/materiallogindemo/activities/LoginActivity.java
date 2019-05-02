@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, AdminOperations.class));
 
                             } else if (email.trim().toLowerCase().endsWith("@tcomptech.com")) {
-                               final Intent add = new Intent(LoginActivity.this, YearSelection.class);
+                                final Intent add = new Intent(LoginActivity.this, YearSelection.class);
                                 // Read from the database
 
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -174,13 +174,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         // Disable going back to the MainActivity
         moveTaskToBack(true);
-    }
-
-
-    public void onLoginFailed() {
-        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-
-        _loginButton.setEnabled(true);
     }
 
 

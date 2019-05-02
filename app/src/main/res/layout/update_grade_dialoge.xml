@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="250dp"
+    android:background="@color/primary_dark"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/student_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last exam grade for student : adam"
+        android:textColor="@color/accent"
+        android:textSize="15sp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:textColorHint="@color/accent">
+
+        <EditText
+            android:id="@+id/last_grade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="grade"
+            android:inputType="number"
+            android:textColorHint="@color/accent" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/update_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/primary_darker"
+        android:text="Add grade"
+        android:textAllCaps="false"
+        android:textColor="@color/accent" />
+
+</LinearLayout>

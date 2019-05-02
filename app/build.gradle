@@ -33,6 +33,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.github.okdroid:checkablechipview:1.0.3'
     implementation 'com.github.mskurt:NeverEmptyListView:v1.0.1'
+    implementation 'com.github.duanhong169:text-button:1.0.5'
     compile 'gr.escsoft.michaelprimez.revealedittext:RevealEditText:1.0.2'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 
