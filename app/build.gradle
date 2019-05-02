@@ -27,10 +27,13 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.google.firebase:firebase-auth:16.0.3'
     implementation 'com.google.firebase:firebase-database:16.0.1'
-    implementation 'com.github.jaiselrahman:HintSpinner:1.0.0'
+   // implementation 'gr.escsoft.michaelprimez.searchablespinner:SearchableSpinner:1.0.9'
+    compile 'com.github.michaelprimez:searchablespinner:3b899258b5'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.github.okdroid:checkablechipview:1.0.3'
     implementation 'com.github.mskurt:NeverEmptyListView:v1.0.1'
+    compile 'gr.escsoft.michaelprimez.revealedittext:RevealEditText:1.0.2'
+    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 
 }

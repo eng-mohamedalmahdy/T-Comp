@@ -3,19 +3,20 @@ package com.sourcey.materiallogindemo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.jaiselrahman.hintspinner.HintSpinner;
-import com.jaiselrahman.hintspinner.HintSpinnerAdapter;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner;
 
 public class AddSchoolActivity extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class AddSchoolActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference myRef;
-    HintSpinner schoolType;
+    SearchableSpinner schoolType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class AddSchoolActivity extends AppCompatActivity {
         data.add("Primary");
         data.add("preparatory");
         data.add("Secondary");
-        schoolType.setAdapter(new HintSpinnerAdapter<>(this, data, "school type"));
+        schoolType.setAdapter(new SimpleArrayListAdapter(this,data));
         addSchool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

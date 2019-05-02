@@ -3,16 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <net.mskurt.neveremptylistviewlibrary.NeverEmptyListView
-        xmlns:custom="http://schemas.android.com/apk/res-auto"
+    <net.mskurt.neveremptylistviewlibrary.NeverEmptyListView xmlns:custom="http://schemas.android.com/apk/res-auto"
         android:id="@+id/students_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        custom:holderTextTopMargin="20dp"
+        android:background="@color/primary"
         custom:holderBackgroundColor="@color/primary"
-        custom:holderTextFontSize="9sp"
+        custom:holderImageBackground="@drawable/sad"
+        custom:holderText="no students are added to this year on this school"
         custom:holderTextColor="@color/accent"
-        custom:holderText="no teaching years are added to this account"
-        custom:holderImageBackground="@drawable/sad"/>
+        custom:holderTextFontSize="9sp"
+        custom:holderTextTopMargin="20dp" />
 
 </RelativeLayout>

@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,18 +14,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jaiselrahman.hintspinner.HintSpinner;
-import com.jaiselrahman.hintspinner.HintSpinnerAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner;
 
 
 public class NewStudentActivity extends AppCompatActivity {
 
     TextView _studentName;
     TextView _studentSchoolYear;
-    HintSpinner _studentSchool;
+    SearchableSpinner _studentSchool;
     ArrayList<String> data;
 
 
@@ -58,7 +59,7 @@ public class NewStudentActivity extends AppCompatActivity {
             }
         });
 
-        _studentSchool.setAdapter(new HintSpinnerAdapter<>(this, data , "school name"));
+        _studentSchool.setAdapter(new SimpleArrayListAdapter(this, data));
 
 
         _addStudent.setOnClickListener(new View.OnClickListener() {

@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, AdminOperations.class));
 
                             } else if (email.trim().toLowerCase().endsWith("@tcomptech.com")) {
-                                Intent add = new Intent(LoginActivity.this, YearSelection.class);
+                               final Intent add = new Intent(LoginActivity.this, YearSelection.class);
                                 // Read from the database
 
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -123,8 +123,11 @@ public class LoginActivity extends AppCompatActivity {
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                             if (ds.child("email").getValue().toString().equals(user.getEmail())) {
+
                                                 id = ds.getKey();
-                                                break;
+                                                add.putExtra("id", id);
+                                                startActivity(add);
+
                                             }
                                         }
                                     }
@@ -134,8 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Log.w(TAG, "Failed to read value.", error.toException());
                                     }
                                 });
-                                add.putExtra("id", id);
-                                startActivity(add);
+
 
                             } else {
                                 Toast.makeText(LoginActivity.this, "invalid domain", Toast.LENGTH_SHORT).show();

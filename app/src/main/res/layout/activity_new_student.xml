@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primary"
     android:fitsSystemWindows="true">
 
@@ -39,10 +40,23 @@
         </android.support.design.widget.TextInputLayout>
 
         <!--  school Label -->
-        <com.jaiselrahman.hintspinner.HintSpinner
+        <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
             android:id="@+id/student_school"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center_horizontal"
+            app:StartSearchTintColor="@android:color/white"
+            app:DoneSearchTintColor="@android:color/holo_purple"
+            app:RevealViewBackgroundColor="@android:color/holo_purple"
+            app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+            app:ShowBorders="false"
+            app:RevealEmptyText="school"
+            app:SpinnerExpandHeight="300dp"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
