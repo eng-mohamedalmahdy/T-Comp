@@ -73,6 +73,10 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.teacher_school)
     SearchableSpinner _schools;
 
+
+    @BindView(R.id.domain)
+    TextView domain;
+
     private ArrayList<String> data;
 
     @Override
@@ -91,7 +95,9 @@ public class SignupActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         if (s.equals("teacher")) {
-            _emailText.setHint("example : example@tcomptech.com");
+            domain.setText("@tcomptech.com");
+        } else if (s.equals("student")) {
+            domain.setText("@tcompstu.com");
         }
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +124,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    data.add(ds.getKey());
+                    data.add(ds.child("schoolName").getValue().toString());
                 }
 
             }
@@ -152,7 +158,7 @@ public class SignupActivity extends AppCompatActivity {
 
         final String name = _nameText.getText().toString();
         final String address = _addressText.getText().toString();
-        final String email = _emailText.getText().toString();
+        final String email = _emailText.getText().toString() + domain.getText().toString();
         final String mobile = _mobileText.getText().toString();
         final String password = _passwordText.getText().toString();
 
@@ -226,7 +232,7 @@ public class SignupActivity extends AppCompatActivity {
 
         String name = _nameText.getText().toString();
         String address = _addressText.getText().toString();
-        String email = _emailText.getText().toString();
+        String email = _emailText.getText().toString() + domain.getText().toString();
         String mobile = _mobileText.getText().toString();
         String password = _passwordText.getText().toString();
 

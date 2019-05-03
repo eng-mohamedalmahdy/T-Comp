@@ -12,23 +12,22 @@
         android:layout_height="wrap_content"
         android:text="Last exam grade for student : adam"
         android:textColor="@color/accent"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:textColorHint="@color/accent">
+
 
         <EditText
+            android:layout_marginTop="10dp"
             android:id="@+id/last_grade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="grade"
+            android:textSize="20sp"
+
             android:inputType="number"
+            android:textColor="@color/accent"
             android:textColorHint="@color/accent" />
-    </android.support.design.widget.TextInputLayout>
+
 
     <Button
         android:id="@+id/update_grade"

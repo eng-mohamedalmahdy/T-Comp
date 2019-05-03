@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:textColorHint="@color/accent">
 
         <EditText
             android:id="@+id/school_name"
@@ -21,31 +22,37 @@
             android:layout_height="wrap_content"
             android:hint="school name"
             android:inputType="textEmailAddress"
+            android:textColor="@color/accent"
             android:textColorHint="@color/accent" />
     </android.support.design.widget.TextInputLayout>
 
     <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
         android:id="@+id/school_type"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-
+        android:background="@color/primary"
+        android:backgroundTint="@color/primary"
         android:gravity="center_horizontal"
-        app:StartSearchTintColor="@android:color/white"
-        app:DoneSearchTintColor="@color/accent"
-        app:RevealViewBackgroundColor="@color/primary"
-        app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
-        app:ShowBorders="false"
-
+        app:DoneSearchTintColor="@color/primary"
         app:RevealEmptyText="schools"
-        app:SpinnerExpandHeight="300dp"/>
+        app:RevealViewBackgroundColor="@color/primary"
+        app:SearchViewBackgroundColor="@color/primary"
+        app:SearchViewTextColor="@color/primary"
+        app:ShowBorders="false"
+        app:SpinnerExpandHeight="300dp"
+        app:StartSearchTintColor="@android:color/white" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/add_school"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:background="@color/primary_darker"
         android:layout_marginBottom="24dp"
+        android:foreground="@drawable/ripple_effect"
+
         android:padding="12dp"
         android:text="add school" />
 

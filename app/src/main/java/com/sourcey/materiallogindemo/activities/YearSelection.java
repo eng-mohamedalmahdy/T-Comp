@@ -55,7 +55,7 @@ public class YearSelection extends AppCompatActivity {
                 school = dataSnapshot.child("school").getValue().toString();
                 subject = dataSnapshot.child("subject").getValue().toString();
                 dataArray = years.split(",");
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(YearSelection.this, android.R.layout.simple_list_item_1, android.R.id.text1, dataArray);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(YearSelection.this, R.layout.simple_list_item, R.id.text1, dataArray);
                 _yearsList.setAdapter(adapter);
 
             }

@@ -47,7 +47,7 @@ public class NewStudentActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    data.add(ds.getKey());
+                    data.add(ds.child("schoolName").getValue().toString());
                 }
 
             }
@@ -71,7 +71,7 @@ public class NewStudentActivity extends AppCompatActivity {
                 if (Integer.valueOf(year) < 1 || Integer.valueOf(year) > 3) {
                     Toast.makeText(NewStudentActivity.this, "invalid school year", Toast.LENGTH_SHORT).show();
                 } else {
-                    usersReference = database.getReference("system").child("schools").child(school).child("year" + year);
+                    usersReference = database.getReference("system").child("schools").child(school).child("year " + year);
                     HashMap<String, String> newStudent = new HashMap<>();
                     String id = usersReference.push().getKey();
                     String name = _studentName.getText().toString();

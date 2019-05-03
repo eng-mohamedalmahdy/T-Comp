@@ -5,40 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/primary"
+    android:background="@color/primary_dark"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.sourcey.materiallogindemo.activities.AdminOperations">
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/add_teacher"
+        android:foreground="@drawable/ripple_effect"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="24dp"
-        android:background="@color/primary_darker"
+        android:background="@color/primary"
         android:padding="12dp"
-        android:text="add teacher" />
+        android:text="add teacher"
+        android:textColor="@color/accent" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/add_student"
         android:layout_width="match_parent"
+        android:foreground="@drawable/ripple_effect"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="24dp"
-        android:background="@color/primary_darker"
+        android:background="@color/primary"
         android:padding="12dp"
-        android:text="add student" />
+        android:text="add student"
+        android:textColor="@color/accent" />
+
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/add_school"
+        android:foreground="@drawable/ripple_effect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="24dp"
-        android:background="@color/primary_darker"
+        android:background="@color/primary"
         android:padding="12dp"
-        android:text="add school" />
+        android:text="add school"
+        android:textColor="@color/accent" />
 
 
 </LinearLayout>

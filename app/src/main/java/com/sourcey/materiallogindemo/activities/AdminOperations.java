@@ -16,12 +16,13 @@ public class AdminOperations extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_operations);
 
-        Button _addTeacher = (Button) findViewById(R.id.add_teacher);
+        final Button _addTeacher = (Button) findViewById(R.id.add_teacher);
         Button _addStudent = (Button) findViewById(R.id.add_student);
         Button _addSchool = (Button) findViewById(R.id.add_school);
         _addTeacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent add = new Intent(AdminOperations.this, SignupActivity.class);
                 add.putExtra("type", "teacher");
                 startActivity(add);

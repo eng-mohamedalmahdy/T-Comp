@@ -111,7 +111,7 @@ public class StudentsList extends AppCompatActivity {
 
     public void showPopup(View v, int i) {
         updateGrade.setContentView(R.layout.update_grade_dialoge);
-        final Student student = students.get(students.size()-1-i);
+        final Student student = students.get(students.size() - 1 - i);
 
         TextView name = updateGrade.findViewById(R.id.student_name);
         name.setText(String.format("Last exam grade for student : %s", student.getName()));
@@ -125,17 +125,17 @@ public class StudentsList extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Double.valueOf(newGrade.getText().toString()) > 11 ||
+                if (newGrade.getText().toString().isEmpty()) {
+                    newGrade.setError("cannot be empty");
+                } else if (Double.valueOf(newGrade.getText().toString()) > 11 ||
                         Double.valueOf(newGrade.getText().toString()) < 0) {
                     newGrade.setError("Grade must be between 0 and 10");
 
-                } else if (newGrade.getText().toString().isEmpty()) {
-                    newGrade.setError("cannot be empty");
                 } else {
                     double updatedGrade = currentGrade + Double.valueOf(newGrade.getText().toString());
                     DatabaseReference gradesRef = database.getReference("system").
                             child("schools").
-                            child(school).child(year).
+                            child(school).child(year.replaceAll("\"", "")).
                             child(student.getId()).
                             child(subject);
                     gradesRef.setValue(Double.toString(updatedGrade));

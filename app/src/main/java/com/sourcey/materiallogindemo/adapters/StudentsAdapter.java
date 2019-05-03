@@ -48,7 +48,7 @@ public class StudentsAdapter extends ArrayAdapter<Student> {
         TextView name = convertView.findViewById(R.id.student_name);
         name.setText(getItem(position).getName());
 
-        TextButton grade = convertView.findViewById(R.id.subject_grade);
+        TextView grade = convertView.findViewById(R.id.subject_grade);
         grade.setText(Double.toString(getItem(position).getGrade()));
 
         return convertView;

@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.sourcey.materialloginexample"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -36,5 +36,6 @@ dependencies {
     implementation 'com.github.duanhong169:text-button:1.0.5'
     compile 'gr.escsoft.michaelprimez.revealedittext:RevealEditText:1.0.2'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    compile 'com.github.traex.rippleeffect:library:1.3'
 
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -45,7 +46,7 @@ public class AddSchoolActivity extends AppCompatActivity {
         data.add("Primary");
         data.add("preparatory");
         data.add("Secondary");
-        schoolType.setAdapter(new SimpleArrayListAdapter(this,data));
+        schoolType.setAdapter(new SimpleArrayListAdapter(this, data));
         addSchool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,9 +59,14 @@ public class AddSchoolActivity extends AppCompatActivity {
                 String schoolNameString = schoolName.getText().toString();
                 String schoolTypeString = schoolType.getSelectedItem().toString();
                 HashMap<String, String> schoolDataMap = new HashMap<>();
+
+                String id = myRef.push().getKey();
+
                 schoolDataMap.put("schoolName", schoolNameString);
                 schoolDataMap.put("type", schoolTypeString);
-                myRef.child(schoolNameString).setValue(schoolDataMap);
+                schoolDataMap.put("id", id);
+                myRef.child(id).setValue(schoolDataMap);
+                Toast.makeText(AddSchoolActivity.this, "school added successfully", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -69,8 +75,8 @@ public class AddSchoolActivity extends AppCompatActivity {
     private boolean validate() {
         boolean valid = true;
         if (schoolName.getText().toString().isEmpty()) {
-
             schoolName.setError("can't be empty");
+            valid = false;
 
         } else {
             schoolName.setError(null);
