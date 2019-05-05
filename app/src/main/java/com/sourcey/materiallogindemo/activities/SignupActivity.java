@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sourcey.materiallogindemo.R;
+import com.sourcey.materiallogindemo.adapters.School;
 import com.sourcey.materiallogindemo.adapters.SimpleArrayListAdapter;
 
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner;
+import gr.escsoft.michaelprimez.searchablespinner.interfaces.OnItemSelectedListener;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
@@ -51,13 +54,12 @@ public class SignupActivity extends AppCompatActivity {
     @BindView(R.id.input_password)
     EditText _passwordText;
 
-    EditText _subjectName;
+    SearchableSpinner _subjectName;
 
 
     @BindView(R.id.btn_signup)
     Button _signupButton;
-    @BindView(R.id.link_login)
-    TextView _loginLink;
+
 
     @BindView(R.id.year1)
     CheckableChipView year1;
@@ -70,14 +72,28 @@ public class SignupActivity extends AppCompatActivity {
     CheckableChipView year3;
 
 
+    @BindView(R.id.year4)
+    CheckableChipView year4;
+
+    @BindView(R.id.year5)
+    CheckableChipView year5;
+
+    @BindView(R.id.year6)
+    CheckableChipView year6;
+
+
     @BindView(R.id.teacher_school)
     SearchableSpinner _schools;
-
+    ArrayList<School> schools;
 
     @BindView(R.id.domain)
     TextView domain;
 
     private ArrayList<String> data;
+    String currentSchoolType;
+
+    ArrayList<String> preparatory;
+    ArrayList<String> secondary;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,7 +101,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        _subjectName = (EditText) findViewById(R.id.subject_name);
+        _subjectName = findViewById(R.id.subject_name);
         s = getIntent().getStringExtra("type");
         if (s.equals("student")) {
             android.support.design.widget.TextInputLayout contaier = (android.support.design.widget.TextInputLayout) findViewById(R.id.container);
@@ -107,25 +123,23 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        _loginLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Finish the registration screen and return to the Login activity
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-            }
-        });
-
+        schools = new ArrayList<>();
         data = new ArrayList<>();
         usersReference = database.getReference("system").child("schoolsData");
         usersReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    data.add(ds.child("schoolName").getValue().toString());
+                    String name = ds.child("schoolName").getValue().toString();
+                    String type = ds.child("type").getValue().toString();
+                    String id = ds.child("id").getValue().toString();
+                    data.add(name);
+                    schools.add(new School(id, name, type));
+
+
                 }
+
 
             }
 
@@ -135,8 +149,68 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         });
+        _schools.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(View view, int position, long id) {
+                for (int i = 0; i < schools.size(); i++) {
+                    if (schools.get(i).getName().equals(_schools.getSelectedItem().toString())) {
+                        currentSchoolType = schools.get(i).getType();
+                        if (currentSchoolType.equals("Primary")) {
+                            _subjectName.setAdapter(new SimpleArrayListAdapter(SignupActivity.this, preparatory));
+                            year4.setVisibility(View.VISIBLE);
+                            year5.setVisibility(View.VISIBLE);
+                            year6.setVisibility(View.VISIBLE);
+
+                        } else if (currentSchoolType.equals("Preparatory")) {
+                            _subjectName.setAdapter(new SimpleArrayListAdapter(SignupActivity.this, preparatory));
+                            year4.setVisibility(View.GONE);
+                            year5.setVisibility(View.GONE);
+                            year6.setVisibility(View.GONE);
+
+                        } else if (currentSchoolType.equals("Secondary")) {
+                            _subjectName.setAdapter(new SimpleArrayListAdapter(SignupActivity.this, secondary));
+                            year4.setVisibility(View.GONE);
+                            year5.setVisibility(View.GONE);
+                            year6.setVisibility(View.GONE);
+                        }
+                        break;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected() {
+                currentSchoolType = "Preparatory";
+            }
+        });
+        setSubjects();
 
         _schools.setAdapter(new SimpleArrayListAdapter(this, data));
+        _subjectName.setAdapter(new SimpleArrayListAdapter(this, preparatory));
+
+    }
+
+    private void setSubjects() {
+        preparatory = new ArrayList<>();
+        preparatory.add("social");
+        preparatory.add("science");
+        preparatory.add("arabic");
+        preparatory.add("english");
+        preparatory.add("art");
+        preparatory.add("ie");
+        preparatory.add("math");
+        secondary = new ArrayList<>();
+        secondary.add("arabic");
+        secondary.add("history");
+        secondary.add("geography");
+        secondary.add("biology");
+        secondary.add("physics");
+        secondary.add("chemistry");
+        secondary.add("math");
+        secondary.add("art");
+        secondary.add("ie");
+
 
     }
 
@@ -162,6 +236,7 @@ public class SignupActivity extends AppCompatActivity {
         final String mobile = _mobileText.getText().toString();
         final String password = _passwordText.getText().toString();
 
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -180,7 +255,7 @@ public class SignupActivity extends AppCompatActivity {
 
                             if ("teacher".equals(s)) {
                                 usersReference = database.getReference("system").child("teachers");
-                                String subject = _subjectName.getText().toString();
+                                String subject = _subjectName.getSelectedItem().toString();
                                 String years = "";
                                 if (year1.isChecked()) {
                                     years += year1.getText().toString() + ",";
@@ -190,6 +265,15 @@ public class SignupActivity extends AppCompatActivity {
                                 }
                                 if (year3.isChecked()) {
                                     years += year3.getText().toString() + ",";
+                                }
+                                if (year4.isChecked()) {
+                                    years += year4.getText().toString() + ",";
+                                }
+                                if (year5.isChecked()) {
+                                    years += year5.getText().toString() + ",";
+                                }
+                                if (year6.isChecked()) {
+                                    years += year6.getText().toString() + ",";
                                 }
                                 userData.put("years", years);
                                 userData.put("subject", subject);

@@ -1,5 +1,6 @@
 package com.sourcey.materiallogindemo.activities;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.graphics.Color;
@@ -30,14 +31,33 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
+import com.sourcey.materiallogindemo.Config.Config;
 import com.sourcey.materiallogindemo.R;
+
+import org.json.JSONException;
+
+import java.math.BigDecimal;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import top.defaults.view.TextButton;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+    public static final int PAYPAL_REQUEST_CODE = 7171;
+
+    private static PayPalConfiguration config = new PayPalConfiguration()
+            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
+            .clientId(Config.PAYPAL_CLIENT_ID);
+
+
+    TextView edtAmount;
 
     private Dialog fillForm;
     private FirebaseAuth mAuth;
@@ -50,16 +70,19 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.link_signup)
     TextView _signupLink;
 
-    @BindView(R.id.student_signup)
-    TextView signStudent;
     String id = "";
+    String amount = null;
+
+    @BindView(R.id.donate)
+    TextView donate;
+
+    Dialog donationDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
         mAuth = FirebaseAuth.getInstance((FirebaseApp.initializeApp(this)));
 
 
@@ -70,17 +93,35 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
-        signStudent.setOnClickListener(new View.OnClickListener() {
+        donationDialog = new Dialog(this);
+        fillForm = new Dialog(this);
+
+        donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent add = new Intent(LoginActivity.this, SignupActivity.class);
-                add.putExtra("type", "student");
-                startActivity(add);
-
+                showDonateDialog();
             }
         });
+    }
 
-        fillForm = new Dialog(this);
+    private void showDonateDialog() {
+
+
+        donationDialog.setContentView(R.layout.donation_dialoge);
+        edtAmount = donationDialog.findViewById(R.id.donated_ammount);
+        Button donate = donationDialog.findViewById(R.id.donate);
+        donate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                processPayment();
+                donationDialog.dismiss();
+            }
+        });
+        donationDialog.getWindow().setGravity(Gravity.CENTER);
+        donationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        donationDialog.show();
+
+
     }
 
     public void login() {
@@ -159,25 +200,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == RESULT_OK) {
-
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-                this.finish();
-            }
-        }
-    }
-
-    @Override
     public void onBackPressed() {
         // Disable going back to the MainActivity
         moveTaskToBack(true);
     }
 
 
-    public void ShowPopup(View v) {
+    public void ShowVolPopup(View v) {
         TextView txtclose;
         WebView form;
         fillForm.setContentView(R.layout.activity_volunteer);
@@ -196,6 +225,50 @@ public class LoginActivity extends AppCompatActivity {
         fillForm.getWindow().setGravity(Gravity.CENTER);
         fillForm.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         fillForm.show();
+    }
+
+
+    private void processPayment() {
+        amount = edtAmount.getText().toString();
+        if (amount.isEmpty()) {
+            edtAmount.setError("Cannot be empty");
+        } else {
+            edtAmount.setError(null);
+            PayPalPayment payPalPayment = new PayPalPayment(new BigDecimal(String.valueOf(amount)), "USD",
+                    "Donate", PayPalPayment.PAYMENT_INTENT_SALE);
+            Intent intent = new Intent(this, PaymentActivity.class);
+            intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+            intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payPalPayment);
+            startActivityForResult(intent, PAYPAL_REQUEST_CODE);
+        }
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PAYPAL_REQUEST_CODE) {
+            if (requestCode == RESULT_OK) {
+                PaymentConfirmation confirmation = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+                if (confirmation != null) {
+                    try {
+                        String paymentDetails = confirmation.toJSONObject().toString(4);
+
+                        startActivity(new Intent(this, PaymentDetails.class)
+                                .putExtra("PaymentDetails", paymentDetails)
+                                .putExtra("PaymentAmount", amount)
+                        );
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            } else if (resultCode == Activity.RESULT_CANCELED)
+                Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
+
+        } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID)
+            Toast.makeText(this, "Invalid", Toast.LENGTH_SHORT).show();
+
     }
 }
 

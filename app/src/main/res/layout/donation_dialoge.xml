@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="250dp"
+    android:background="@color/primary_dark"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter the donation amount"
+        android:textColor="@color/accent"
+        android:textSize="20sp" />
+
+
+    <EditText
+
+        android:id="@+id/donated_ammount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Amount in USD"
+        android:inputType="number"
+        android:textColor="@color/accent"
+        android:textColorHint="@color/accent"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/donate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/primary_darker"
+        android:text="Donate"
+        android:textAllCaps="false"
+        android:textColor="@color/accent" />
+
+</LinearLayout>

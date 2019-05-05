@@ -44,7 +44,7 @@ public class AddSchoolActivity extends AppCompatActivity {
         final ArrayList<String> data = new ArrayList<>();
         schoolType = findViewById(R.id.school_type);
         data.add("Primary");
-        data.add("preparatory");
+        data.add("Preparatory");
         data.add("Secondary");
         schoolType.setAdapter(new SimpleArrayListAdapter(this, data));
         addSchool.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +71,7 @@ public class AddSchoolActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private boolean validate() {
         boolean valid = true;

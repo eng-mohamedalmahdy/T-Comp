@@ -42,68 +42,6 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-
-                <EditText
-                    android:id="@+id/subject_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="teaching subject"
-                    android:inputType="textPostalAddress" />
-
-
-            </android.support.design.widget.TextInputLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="teaching years"
-                android:layout_marginBottom="8dp"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-
-
-                <com.github.okdroid.checkablechipview.CheckableChipView
-                    android:id="@+id/year1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:background="@color/primary"
-                    android:text="year 1" />
-
-                <com.github.okdroid.checkablechipview.CheckableChipView
-                    android:id="@+id/year2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:background="@color/primary"
-                    android:text="year 2" />
-
-                <com.github.okdroid.checkablechipview.CheckableChipView
-                    android:id="@+id/year3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:background="@color/primary"
-                    android:text="year 3" />
-            </LinearLayout>
-
             <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
                 android:id="@+id/teacher_school"
                 android:layout_width="match_parent"
@@ -117,6 +55,119 @@
                 app:ShowBorders="false"
                 app:SpinnerExpandHeight="300dp"
                 app:StartSearchTintColor="@android:color/white" />
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <gr.escsoft.michaelprimez.searchablespinner.SearchableSpinner
+                android:id="@+id/subject_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_horizontal"
+                android:hint="teaching subject"
+                app:DoneSearchTintColor="@android:color/white"
+                app:RevealEmptyText="Teaching subject"
+                app:RevealViewBackgroundColor="@color/primary"
+                app:SearchViewBackgroundColor="@color/primary_dark"
+                app:ShowBorders="false"
+                app:SpinnerExpandHeight="300dp"
+                app:StartSearchTintColor="@android:color/white" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="teaching years"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:paddingLeft="24dp"
+            android:layout_marginTop="5dp"
+            android:paddingRight="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <com.github.okdroid.checkablechipview.CheckableChipView
+                android:id="@+id/year1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@color/primary"
+                android:text="year 1" />
+
+            <com.github.okdroid.checkablechipview.CheckableChipView
+                android:id="@+id/year2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@color/primary"
+                android:text="year 2" />
+
+            <com.github.okdroid.checkablechipview.CheckableChipView
+                android:id="@+id/year3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@color/primary"
+                android:text="year 3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="24dp"
+            android:layout_marginTop="5dp"
+            android:paddingRight="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.github.okdroid.checkablechipview.CheckableChipView
+                android:id="@+id/year4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@color/primary"
+                android:text="year 4" />
+
+            <com.github.okdroid.checkablechipview.CheckableChipView
+                android:id="@+id/year5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@color/primary"
+                android:text="year 5" />
+
+            <com.github.okdroid.checkablechipview.CheckableChipView
+                android:id="@+id/year6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@color/primary"
+                android:text="year 6" />
+
         </LinearLayout>
 
 
@@ -149,17 +200,17 @@
             <EditText
                 android:id="@+id/input_email"
                 android:layout_width="0dp"
-                android:layout_weight="3"
                 android:layout_height="match_parent"
+                android:layout_weight="3"
                 android:hint="Email"
                 android:inputType="textEmailAddress" />
 
             <TextView
                 android:id="@+id/domain"
                 android:layout_width="0dp"
-                android:layout_weight="2"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -203,18 +254,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:background="@color/primary_darker"
+            android:background="@color/primary_dark"
             android:padding="12dp"
-            android:text="Create Account" />
+            android:text="Create Account"
+            android:textColor="@color/accent" />
 
-        <TextView
-            android:id="@+id/link_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:gravity="center"
-            android:text="Already a member? Login"
-            android:textSize="16dip" />
 
     </LinearLayout>
 </ScrollView>
